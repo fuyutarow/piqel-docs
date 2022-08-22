@@ -9,17 +9,17 @@ export interface QueryResource {
 
 export const queryExamples: QueryResource[] = [
   {
-    id: nanoid(),
+    id: '1',
     url: "https://registry.npmjs.org/-/v1/search?text=aptos",
     query: "SELECT objects.package.name, objects.searchScore as score ORDERED BY score",
   },
   {
-    id: nanoid(),
+    id: '2',
     url: "https://registry.npmjs.org/-/v1/search?text=aptos",
     query: "SELECT objects.package.name, objects.searchScore as score ORDERED BY score",
   },
   {
-    id: nanoid(),
+    id: '3',
     url: "https://registry.npmjs.org/-/v1/search?text=aptos",
     query: "SELECT objects.package.name, objects.searchScore as score ORDERED BY score",
   },
