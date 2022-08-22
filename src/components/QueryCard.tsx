@@ -1,4 +1,4 @@
-import { Component, For } from "solid-js"
+import { Component, createSignal, For, Show } from "solid-js"
 import { langs, Langs } from "../types"
 import { QueryResource, toSome } from "../utils/queryExamples"
 import { Link, useRoutes, useLocation } from 'solid-app-router';
@@ -6,7 +6,10 @@ import { VsTerminal } from 'solid-icons/vs'
 import { SiJavascript } from 'solid-icons/si'
 import { SiPython } from 'solid-icons/si'
 import { SiRust } from 'solid-icons/si'
-import { FaRegularCopy } from 'solid-icons/fa'
+import { CopyButton } from "./CopyButton";
+
+
+
 
 export const QueryCard: Component<{
   resource: QueryResource,
@@ -39,6 +42,7 @@ export const QueryCard: Component<{
     }
   ]
 
+
   return (
     <div id={props.resource.id}>
       <div class="flex items-center gap-3">
@@ -58,13 +62,9 @@ export const QueryCard: Component<{
         </For>
       </div>
       <div class='flex flex-col justify-center'>
-        <div class="text-white bg-sea-900 border-moon-500 border-1 rounded-2xl p-5 w-108">
-          <div class='flex justify-end'>
-            <button onClick={() => {
-              alert('clip')
-            }}>
-              <FaRegularCopy />
-            </button>
+        <div class="relative text-white bg-sea-900 border-moon-500 border-1 rounded-2xl p-5 w-108">
+          <div class='absolute -top-1 -right-1'>
+            <CopyButton text={text()} />
           </div>
           <For each={text().split('\n')}>
             {line => (
@@ -80,7 +80,6 @@ export const QueryCard: Component<{
           Run
         </button>
       </div>
-    </div>
+    </div >
   )
-
 }
