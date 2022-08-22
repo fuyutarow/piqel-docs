@@ -43,7 +43,29 @@ const toCLI = (resource: QueryResource) => {
 const toRust = (resource: QueryResource) => {
   const { url, query } = resource
   return `
-    curl "${url}" | pq -q "${query}"
+use piqel;
+use reqwest;
+
+#[tokio::main]
+async fn main() -> anyhow::Result<()> {
+    let body = reqwest::get(
+      "${url.trim()}"
+    )
+        .await?
+        .json::<serde_json::Value>()
+        .await?;
+    let sql = r#"
+${query.trim()}
+    "#;
+
+    let data = piqel::engine::evaluate(
+      sql,
+      &serde_json::to_string(&body).unwrap(),
+      "json", "json"
+    );
+
+    Ok(())
+}
   `
 }
 
