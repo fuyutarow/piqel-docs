@@ -1,4 +1,4 @@
-import { Component, createSignal, For, Show } from "solid-js"
+import { Component, createEffect, createSignal, For, JSXElement, Show } from "solid-js"
 import { langs, Langs } from "../types"
 import { QueryResource, toSome } from "../utils/queryExamples"
 import { Link, useRoutes, useLocation } from 'solid-app-router';
@@ -8,23 +8,25 @@ import { SiPython } from 'solid-icons/si'
 import { SiRust } from 'solid-icons/si'
 import { CopyButton } from "./CopyButton";
 
+import Highlight from "solid-highlight"
+import "highlight.js/styles/base16/atlas.css";
+// import "highlight.js/styles/base16/harmonic16-dark.css";
+// import "highlight.js/styles/base16/solarized-dark.css"
+
+
 export const CodeBlock: Component<{
   text: string,
 }> = (props) => {
   return (
-    <div class="relative text-white bg-sea-900 border-moon-500 border-1 rounded-2xl px-6 py-4 w-108">
+    <div class="sm:container sm:mx-auto relative text-white bg-sea-950 border-moon-500 border-1 rounded-2xl px-6 py-4">
       <div class='absolute top-0.3 left-2 p-0 text-sm text-gray-500'>
       </div>
       <div class='absolute -top-1 -right-1'>
         <CopyButton text={props.text} />
       </div>
-      <For each={props.text.split('\n')}>
-        {line => (
-          <div>
-            {line}
-          </div>
-        )}
-      </For>
+      <Highlight autoDetect={true}>
+        {props.text.trim()}
+      </Highlight>
     </div>
   )
 }
@@ -82,7 +84,7 @@ export const QueryCard: Component<{
         <CodeBlock text={text()} />
       </div>
       <div>
-        <button class='text-lg text-white bg-green-500 py-1 px-3 rounded-xl'>
+        <button class='text-lg text-white bg-green-500 hover:bg-green-400 py-1 px-3 rounded-xl'>
           Run
         </button>
       </div>
