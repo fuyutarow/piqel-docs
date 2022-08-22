@@ -11,7 +11,6 @@ const App: Component = () => {
   const location = useLocation();
   const Route = useRoutes(routes);
 
-
   const iconSize = 16
   const targets = [
     {
@@ -38,7 +37,7 @@ const App: Component = () => {
 
   return (
     <div class='min-h-screen bg-sea-700'>
-      <nav class="text-white px-4">
+      <nav class="sticky top-0 bg-sea-700 z-10 text-white px-4">
         <div class="flex items-center">
           <div class="py-2 px-4 flex-grow">
             <Link href="/" class="no-underline hover:underline text-white flex items-center gap-3">
@@ -52,11 +51,12 @@ const App: Component = () => {
             <For each={targets}>
               {({ href, label, Icon }) => (
                 <Link
+                  // href={`${href}${location.hash}`}
                   href={href}
                   class={`no-underline hover:underline flex items-center gap-2
               ${location.pathname.startsWith(href)
                       ? 'text-white'
-                      : 'text-gray-500'
+                      : 'text-gray-400'
                     }`}
                 >
                   <Icon />

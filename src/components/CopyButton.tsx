@@ -8,7 +8,6 @@ export const CopyButton: Component<{ text: string }> = (props) => {
 
   return (
     <button
-      // class='bg-red-400 p-3'
       class='p-3'
       onClick={() => {
         write(props.text)

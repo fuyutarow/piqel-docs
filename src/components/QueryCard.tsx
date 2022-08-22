@@ -8,8 +8,26 @@ import { SiPython } from 'solid-icons/si'
 import { SiRust } from 'solid-icons/si'
 import { CopyButton } from "./CopyButton";
 
-
-
+export const CodeBlock: Component<{
+  text: string,
+}> = (props) => {
+  return (
+    <div class="relative text-white bg-sea-900 border-moon-500 border-1 rounded-2xl px-6 py-4 w-108">
+      <div class='absolute top-0.3 left-2 p-0 text-sm text-gray-500'>
+      </div>
+      <div class='absolute -top-1 -right-1'>
+        <CopyButton text={props.text} />
+      </div>
+      <For each={props.text.split('\n')}>
+        {line => (
+          <div>
+            {line}
+          </div>
+        )}
+      </For>
+    </div>
+  )
+}
 
 export const QueryCard: Component<{
   resource: QueryResource,
@@ -42,14 +60,13 @@ export const QueryCard: Component<{
     }
   ]
 
-
   return (
     <div id={props.resource.id}>
       <div class="flex items-center gap-3">
         <For each={targets}>
           {({ href, label, Icon }) => (
             <Link
-              href={href}
+              href={`${href}#${props.resource.id}`}
               class={`no-underline hover:underline flex items-center gap-2
               ${location.pathname.startsWith(href)
                   ? 'text-white'
@@ -62,18 +79,7 @@ export const QueryCard: Component<{
         </For>
       </div>
       <div class='flex flex-col justify-center'>
-        <div class="relative text-white bg-sea-900 border-moon-500 border-1 rounded-2xl p-5 w-108">
-          <div class='absolute -top-1 -right-1'>
-            <CopyButton text={text()} />
-          </div>
-          <For each={text().split('\n')}>
-            {line => (
-              <div>
-                {line}
-              </div>
-            )}
-          </For>
-        </div>
+        <CodeBlock text={text()} />
       </div>
       <div>
         <button class='text-lg text-white bg-green-500 py-1 px-3 rounded-xl'>
