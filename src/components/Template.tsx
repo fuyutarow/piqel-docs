@@ -49,7 +49,7 @@ export const Template: Component<{ lang: Langs }> = (props) => {
       <div class="pt-3 pb-10 flex flex-col gap-10">
         <For each={queryExamples}>
           {resource => (
-            <QueryCard resource={resource} lang="Rust" />
+            <QueryCard resource={resource} lang={props.lang} />
           )}
         </For>
       </div>

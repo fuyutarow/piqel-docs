@@ -10,68 +10,13 @@ export interface QueryResource {
 export const queryExamples: QueryResource[] = [
   {
     id: '1',
-    url: "https://registry.npmjs.org/-/v1/search?text=aptos",
-    query: "SELECT objects.package.name, objects.searchScore as score ORDERED BY score",
-  },
-  {
-    id: '2',
-    url: "https://registry.npmjs.org/-/v1/search?text=aptos",
-    query: "SELECT objects.package.name, objects.searchScore as score ORDERED BY score",
-  },
-  {
-    id: '3',
-    url: "https://registry.npmjs.org/-/v1/search?text=aptos",
-    query: "SELECT objects.package.name, objects.searchScore as score ORDERED BY score",
-  },
-  {
-    id: nanoid(),
-    url: "https://registry.npmjs.org/-/v1/search?text=aptos",
-    query: "SELECT objects.package.name, objects.searchScore as score ORDERED BY score",
-  },
-  {
-    id: nanoid(),
-    url: "https://registry.npmjs.org/-/v1/search?text=aptos",
-    query: "SELECT objects.package.name, objects.searchScore as score ORDERED BY score",
-  },
-  {
-    id: nanoid(),
-    url: "https://registry.npmjs.org/-/v1/search?text=aptos",
-    query: "SELECT objects.package.name, objects.searchScore as score ORDERED BY score",
-  },
-  {
-    id: nanoid(),
-    url: "https://registry.npmjs.org/-/v1/search?text=aptos",
-    query: "SELECT objects.package.name, objects.searchScore as score ORDERED BY score",
-  },
-  {
-    id: nanoid(),
-    url: "https://registry.npmjs.org/-/v1/search?text=aptos",
-    query: "SELECT objects.package.name, objects.searchScore as score ORDERED BY score",
-  },
-  {
-    id: nanoid(),
-    url: "https://registry.npmjs.org/-/v1/search?text=aptos",
-    query: "SELECT objects.package.name, objects.searchScore as score ORDERED BY score",
-  },
-  {
-    id: nanoid(),
-    url: "https://registry.npmjs.org/-/v1/search?text=aptos",
-    query: "SELECT objects.package.name, objects.searchScore as score ORDERED BY score",
-  },
-  {
-    id: nanoid(),
-    url: "https://registry.npmjs.org/-/v1/search?text=aptos",
-    query: "SELECT objects.package.name, objects.searchScore as score ORDERED BY score",
-  },
-  {
-    id: nanoid(),
-    url: "https://registry.npmjs.org/-/v1/search?text=aptos",
-    query: "SELECT objects.package.name, objects.searchScore as score ORDERED BY score",
-  },
-  {
-    id: nanoid(),
-    url: "https://registry.npmjs.org/-/v1/search?text=aptos",
-    query: "SELECT objects.package.name, objects.searchScore as score ORDERED BY score",
+    url: "https://registry.npmjs.org/-/v1/search?text=query",
+    query: `
+SELECT
+  objects.package.name, 
+  objects.searchScore AS score 
+ORDERED BY score
+`,
   },
 ]
 
@@ -105,20 +50,37 @@ const toRust = (resource: QueryResource) => {
 const toPython = (resource: QueryResource) => {
   const { url, query } = resource
   return `
-import requests
 import piqel as pq
-data = request.get(${url})
-pq.DataLake(data)
+import requests
+
+r = requests.get(
+  "${url}"
+)
+dl = pq.DataLake(r.json())
+query = '''
+${query.trim()}
+'''
+data = dl.query(query)
 `
 }
 
 const toNode = (resource: QueryResource) => {
   const { url, query } = resource
   return `
-const {Pool} = requre('piqel')
-const r = await fetch("${url}")
-const data = await r.json()
-const pool = new Pool(JSON.stringify(data))
-const d = pool.query("${query}")
+import fetch from "node-fetch"
+import { Pool } from 'piqel'
+
+(async() => {
+  const r = await fetch(
+    "https://registry.npmjs.org/-/v1/search?text=query"
+  )
+  const d = await r.json()
+  const pool = Pool.new(JSON.stringify(d))
+  const dataStr = pool.query(\`
+SELECT
+  objects.package.name,
+  objects.searchScore AS score 
+ORDERED BY score
+\`)()
 `
 }

@@ -9,7 +9,7 @@ export const installation: Record<Langs, {
     {
       label: 'Homebrew',
       description: 'for macOS',
-      script: `brew install fuyutarow`,
+      script: `brew install fuyutarow/tap/piqel`,
     },
     {
       label: 'scoop',
@@ -40,11 +40,11 @@ scoop install pq
   'JavaScript': [
     {
       label: 'npm',
-      script: `pnpm add piqel`,
+      script: `npm add piqel`,
     },
     {
       label: 'yarn',
-      script: `pnpm add piqel`,
+      script: `yarn add piqel`,
     },
     {
       label: 'pnpm',
