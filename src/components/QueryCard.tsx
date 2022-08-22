@@ -83,11 +83,13 @@ export const QueryCard: Component<{
       <div class='flex flex-col justify-center'>
         <CodeBlock text={text()} />
       </div>
-      <div>
-        <button class='text-lg text-white bg-green-500 hover:bg-green-400 py-1 px-3 rounded-xl'>
-          Run
-        </button>
-      </div>
+      {/* <Show when={props.lang == 'CLI'}>
+        <div>
+          <button class='text-lg text-white bg-green-500 hover:bg-green-400 py-1 px-3 rounded-xl'>
+            Run
+          </button>
+        </div>
+      </Show> */}
     </div >
   )
 }
