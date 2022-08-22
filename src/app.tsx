@@ -5,6 +5,7 @@ import { VsTerminal } from 'solid-icons/vs'
 import { SiJavascript } from 'solid-icons/si'
 import { SiPython } from 'solid-icons/si'
 import { SiRust } from 'solid-icons/si'
+import { SiGithub } from 'solid-icons/si'
 import wordmark from './assets/wordmark.png'
 
 const App: Component = () => {
@@ -53,10 +54,10 @@ const App: Component = () => {
                 <Link
                   // href={`${href}${location.hash}`}
                   href={href}
-                  class={`no-underline hover:underline flex items-center gap-2
+                  class={`no-underline flex items-center gap-2
               ${location.pathname.startsWith(href)
                       ? 'text-white'
-                      : 'text-gray-400'
+                      : 'text-gray-400 hover:text-gray-200'
                     }`}
                 >
                   <Icon />
@@ -67,24 +68,10 @@ const App: Component = () => {
           </div>
           <div class="py-2 px-4 flex-grow flex gap-5 justify-end">
             <Link
-              href="/dev"
-              class={`no-underline hover:underline flex items-center gap-2
-              ${location.pathname.startsWith('/dev')
-                  ? 'text-white'
-                  : 'text-gray-500'
-                }`}
+              href="https://github.com/fuyutarow/piqel"
+              class={`no-underline hover:underline text-gray-400 hover:text-gray-200 flex items-center gap-2`}
             >
-              Dev
-            </Link>
-            <Link
-              href="/about"
-              class={`no-underline hover:underline flex items-center gap-2
-              ${location.pathname.startsWith('/about')
-                  ? 'text-white'
-                  : 'text-gray-500'
-                }`}
-            >
-              About
+              <SiGithub size={28} />
             </Link>
           </div>
         </div>
