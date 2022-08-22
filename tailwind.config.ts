@@ -5,13 +5,16 @@ export default defineConfig({
   theme: {
     extend: {
       colors: {
+        // https://coolors.co/palette/8ecae6-219ebc-126782-023047-ffb703-fd9e02-fb8500
         sea: {
           300: '#8ECAE6',
           500: '#219EBC',
-          700: '#023047',
+          700: '#126782',
+          900: '#023047',
         },
         moon: {
-          500: '#FFB703',
+          300: '#FFB703',
+          500: "#fd9e02",
           700: '#FB8500',
         }
       },

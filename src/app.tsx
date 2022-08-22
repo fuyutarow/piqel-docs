@@ -34,7 +34,6 @@ const App: Component = () => {
       href: '/javascript',
       Icon: () => <SiJavascript size={iconSize} />
     }
-
   ]
 
   return (
@@ -44,7 +43,6 @@ const App: Component = () => {
           <div class="py-2 px-4 flex-grow">
             <Link href="/" class="no-underline hover:underline text-white flex items-center gap-3">
               <img
-                // src='https://pbs.twimg.com/profile_images/1553867986351493120/eQFminHK_400x400.jpg'
                 src={wordmark}
                 width={60}
               />
@@ -92,7 +90,7 @@ const App: Component = () => {
         </div>
       </nav>
 
-      <main class="sm:container sm:mx-auto">
+      <main class="sm:container sm:mx-auto flex justify-center">
         <Route />
       </main>
     </div>
