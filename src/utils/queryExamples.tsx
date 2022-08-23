@@ -9,7 +9,15 @@ export interface QueryResource {
 
 export const queryExamples: QueryResource[] = [
   {
+
     id: '1',
+    url: 'https://api.github.com/repos/stedolan/jq/commits?per_page=5',
+    query: `
+SELECT parents.url, parents.html_url
+`,
+  },
+  {
+    id: '2',
     url: "https://registry.npmjs.org/-/v1/search?text=query",
     query: `
 SELECT
@@ -36,7 +44,9 @@ export const toSome = (resource: QueryResource, type: Langs) => {
 const toCLI = (resource: QueryResource) => {
   const { url, query } = resource
   return `
-    curl "${url}" | pq -q "${query}"
+    curl "${url}" | pq -q "
+${query.trim()}
+"
   `
 }
 

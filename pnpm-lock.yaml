@@ -4,6 +4,7 @@ specifiers:
   '@solid-primitives/clipboard': ^1.4.2
   '@types/prismjs': ^1.26.0
   highlight.js: ^11.6.0
+  json-stringify-pretty-compact: ^4.0.0
   nanoid: ^4.0.0
   solid-app-router: ^0.4.2
   solid-highlight: ^0.1.12
@@ -16,6 +17,7 @@ specifiers:
 dependencies:
   '@solid-primitives/clipboard': 1.4.2_solid-js@1.4.8
   highlight.js: 11.6.0
+  json-stringify-pretty-compact: 4.0.0
   nanoid: 4.0.0
   solid-app-router: 0.4.2_solid-js@1.4.8
   solid-highlight: 0.1.12
@@ -886,6 +888,10 @@ packages:
     engines: {node: '>=4'}
     hasBin: true
     dev: true
+
+  /json-stringify-pretty-compact/4.0.0:
+    resolution: {integrity: sha512-3CNZ2DnrpByG9Nqj6Xo8vqbjT4F6N+tb4Gb28ESAZjYZ5yqvmc56J+/kuIwkaAMOyblTQhUW7PxMkUb8Q36N3Q==}
+    dev: false
 
   /json5/2.2.1:
     resolution: {integrity: sha512-1hqLFMSrGHRHxav9q9gNjJ5EXznIxGVO09xQRrwplcS8qs28pZ8s8hupZAmqDwZUmVZ2Qb2jnyPOWcDH8m8dlA==}

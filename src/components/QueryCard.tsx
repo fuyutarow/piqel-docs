@@ -12,6 +12,7 @@ import { VsLoading } from 'solid-icons/vs'
 import Highlight from "solid-highlight"
 import "highlight.js/styles/base16/atlas.css";
 import { partiqlAPI } from "../utils/partiql";
+import { RunBlock } from "./RunBlock";
 // import "highlight.js/styles/base16/harmonic16-dark.css";
 // import "highlight.js/styles/base16/solarized-dark.css"
 
@@ -26,45 +27,9 @@ export const CodeBlock: Component<{
       <div class='absolute -top-1 -right-1'>
         <CopyButton text={props.text} />
       </div>
-      <Highlight autoDetect={true} class='text-sm'>
+      <Highlight autoDetect={true} class='text-sm break-all'>
         {props.text.trim()}
       </Highlight>
-    </div>
-  )
-}
-
-export const RunBlock: Component<{
-  resource: QueryResource,
-}> = (props) => {
-  const [isLoading, setIsLoaindg] = createSignal(false)
-  const [result, setResult] = createSignal<string | null>(null)
-
-  return (
-    <div class='my-3'>
-      <button
-        class={`text-lg text-white my-2 py-1 px-3 rounded-xl ${isLoading()
-          ? 'bg-gray-500'
-          : 'bg-green-500 hover:bg-green-400'
-          }`}
-        disabled={isLoading()}
-        onClick={async () => {
-          setIsLoaindg(true)
-          const data = await partiqlAPI(props.resource.url, props.resource.query)
-          setIsLoaindg(false)
-          setResult(JSON.stringify(data))
-        }}
-      >
-        <Show when={isLoading()}>
-          <VsLoading size={24} class='animate-spin' />
-        </Show>
-        <Show when={!isLoading()}>
-          Run
-        </Show>
-      </button>
-      <div class={`tex-gray-900 bg-sea-300 rounded-xl ${result() && 'p-2'
-        }`}>
-        {result}
-      </div>
     </div>
   )
 }
