@@ -17,10 +17,15 @@ export default function Home() {
       <div class="my-3 text-gray-100 flex justify-center">
         An implementation of PartiQL written in Rust.
       </div>
-      <div class="my-3 text-gray-300 flex justify-center">
+      <div class="my-10 text-gray-300 flex justify-center">
         <div class='flex items-center gap-5'>
-          <div class='w-80'>
-            <img src={wordmark} />
+          <div class='w-120'>
+            <video autoplay loop>
+              <source
+                src="https://user-images.githubusercontent.com/14998939/186226990-96f8345f-a6cd-420f-8d3d-dd8fb5ddca6b.mp4"
+                type="video/mp4"
+              />
+            </video>
           </div>
           <div class='w-80'>
             A command line tool for data processing with SQL queries.
