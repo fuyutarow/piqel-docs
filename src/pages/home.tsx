@@ -28,8 +28,18 @@ export default function Home() {
             </video>
           </div>
           <div class='w-80'>
-            A command line tool for data processing with SQL queries.
-            json, yaml, toml to your favorite format.
+            <div class='flex justify-center'>
+              A command line tool for data processing with SQL queries.
+              json, yaml, toml to your favorite format.
+            </div>
+            <div class='flex justify-center my-5'>
+              <Link
+                href='/cli#installation'>
+                <button class='text-sea-900 text-xl bg-moon-500 hover:bg-moon-700 px-5 py-3 rounded-2xl'>
+                  Install piqel CLI
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

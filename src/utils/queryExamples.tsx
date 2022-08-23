@@ -21,6 +21,7 @@ SELECT
   objects.package.name, 
   objects.searchScore AS score 
 ORDER BY score
+LIMIT 5
 `,
   },
   {
