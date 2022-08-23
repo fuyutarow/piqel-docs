@@ -57,7 +57,7 @@ const App: Component = () => {
                   class={`no-underline flex items-center gap-2
               ${location.pathname.startsWith(href)
                       ? 'text-white'
-                      : 'text-gray-400 hover:text-gray-200'
+                      : 'text-gray-400 hover:text-gray-300'
                     }`}
                 >
                   <Icon />
@@ -69,7 +69,7 @@ const App: Component = () => {
           <div class="py-2 px-4 flex-grow flex gap-5 justify-end">
             <Link
               href="https://github.com/fuyutarow/piqel"
-              class={`no-underline hover:underline text-gray-400 hover:text-gray-200 flex items-center gap-2`}
+              class={`no-underline hover:underline text-gray-400 hover:text-gray-300 flex items-center gap-2`}
             >
               <SiGithub size={28} />
             </Link>

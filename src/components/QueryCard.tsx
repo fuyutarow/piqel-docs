@@ -25,7 +25,7 @@ export const CodeBlock: Component<{
       <div class='absolute top-0.3 left-2 p-0 text-sm text-gray-500'>
       </div>
       <div class='absolute -top-1 -right-1'>
-        <CopyButton text={props.text} />
+        <CopyButton text={props.text.trim()} />
       </div>
       <Highlight autoDetect={true} class='text-sm break-all'>
         {props.text.trim()}
