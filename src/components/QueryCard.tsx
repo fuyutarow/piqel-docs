@@ -1,6 +1,6 @@
 import { Component, createEffect, createSignal, For, JSXElement, Show } from "solid-js"
-import { langs, Langs } from "../types"
-import { QueryResource, toSome } from "../utils/queryExamples"
+import { langs, Langs, QueryResource } from "../types"
+import { toSome } from "../utils/queryExamples"
 import { Link, useRoutes, useLocation } from 'solid-app-router';
 import { VsTerminal } from 'solid-icons/vs'
 import { SiJavascript } from 'solid-icons/si'
@@ -67,7 +67,7 @@ export const QueryCard: Component<{
 
   return (
     <div id={props.resource.id}>
-      <div class="flex items-center gap-3">
+      {/* <div class="flex items-center gap-3">
         <For each={targets}>
           {({ href, label, Icon }) => (
             <Link
@@ -82,7 +82,7 @@ export const QueryCard: Component<{
             </Link>
           )}
         </For>
-      </div>
+      </div> */}
       <div class='flex flex-col justify-center'>
         <CodeBlock text={text()} />
       </div>

@@ -1,6 +1,6 @@
 import { Component, createSignal, For, Show } from 'solid-js';
 import { nanoid } from 'nanoid'
-import { queryExamples, QueryResource, toSome } from '../utils/queryExamples';
+import { queryExamples, toSome } from '../utils/queryExamples';
 import { CodeBlock, QueryCard } from '../components/QueryCard';
 import { installation } from '../utils/installation';
 import { Link, useLocation } from 'solid-app-router';
@@ -11,7 +11,7 @@ import { docs } from '../utils/docs';
 export const Template: Component<{ lang: Langs }> = (props) => {
   const location = useLocation()
 
-  const { title, links } = docs[props.lang]
+  const { title, links, exampleUrl } = docs[props.lang]
 
   return (
     <section class="text-gray-700 p-8">
@@ -66,6 +66,20 @@ export const Template: Component<{ lang: Langs }> = (props) => {
       >
         Examples
       </Link>
+      <ul class='my-3'>
+        <For each={exampleUrl}>
+          {link => (
+            <li>
+              <Link
+                href={link}
+                class='no-underline hover:underline text-gray-200'
+              >
+                {link}
+              </Link>
+            </li>
+          )}
+        </For>
+      </ul>
       <div class="pt-3 pb-10 flex flex-col gap-10">
         <For each={queryExamples}>
           {resource => (

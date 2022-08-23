@@ -1,13 +1,11 @@
 
 import { Component, createEffect, createSignal, For, JSXElement, Show } from "solid-js"
-import { langs, Langs } from "../types"
-import { QueryResource } from "../utils/queryExamples"
+import { langs, Langs, QueryResource } from "../types"
 import { VsLoading } from 'solid-icons/vs'
 import stringify from "json-stringify-pretty-compact";
 
-import Highlight from "solid-highlight"
-import "highlight.js/styles/base16/atlas.css";
 import { partiqlAPI } from "../utils/partiql";
+import { sleep } from "../utils";
 
 
 export const RunBlock: Component<{
@@ -26,10 +24,14 @@ export const RunBlock: Component<{
         disabled={isLoading()}
         onClick={async () => {
           setIsLoaindg(true)
-          const data = await partiqlAPI(props.resource.url, props.resource.query)
+          if (props.resource.result) {
+            await sleep(1e3)
+            setResult(stringify(JSON.parse(props.resource.result)))
+          } else {
+            const data = await partiqlAPI(props.resource.url, props.resource.query)
+            setResult(stringify(data))
+          }
           setIsLoaindg(false)
-          setResult(stringify(data))
-          console.log(stringify(data))
         }}
       >
         <Show when={isLoading()}>
@@ -40,7 +42,6 @@ export const RunBlock: Component<{
         </Show>
       </button>
       <div class={`max-w-3xl break-all tex-gray-900 bg-sea-300 rounded-xl ${result() && 'p-2'}`}>
-      {/* {'\u00A0'} */}
         <For each={(result() ?? "").replaceAll(' ', '\u00A0').split('\n')}>
           {line => (
             <div>{line}</div>
