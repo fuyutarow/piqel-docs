@@ -7,9 +7,11 @@ import { SiJavascript } from 'solid-icons/si'
 import { SiPython } from 'solid-icons/si'
 import { SiRust } from 'solid-icons/si'
 import { CopyButton } from "./CopyButton";
+import { VsLoading } from 'solid-icons/vs'
 
 import Highlight from "solid-highlight"
 import "highlight.js/styles/base16/atlas.css";
+import { partiqlAPI } from "../utils/partiql";
 // import "highlight.js/styles/base16/harmonic16-dark.css";
 // import "highlight.js/styles/base16/solarized-dark.css"
 
@@ -18,15 +20,51 @@ export const CodeBlock: Component<{
   text: string,
 }> = (props) => {
   return (
-    <div class="sm:container sm:mx-auto relative text-white bg-sea-950 border-moon-500 border-1 rounded-2xl px-6 py-4">
+    <div class="sm:container sm:mx-auto relative text-white bg-sea-950 border-moon-500 border-1 rounded-2xl px-2 w-80">
       <div class='absolute top-0.3 left-2 p-0 text-sm text-gray-500'>
       </div>
       <div class='absolute -top-1 -right-1'>
         <CopyButton text={props.text} />
       </div>
-      <Highlight autoDetect={true}>
+      <Highlight autoDetect={true} class='text-sm'>
         {props.text.trim()}
       </Highlight>
+    </div>
+  )
+}
+
+export const RunBlock: Component<{
+  resource: QueryResource,
+}> = (props) => {
+  const [isLoading, setIsLoaindg] = createSignal(false)
+  const [result, setResult] = createSignal<string | null>(null)
+
+  return (
+    <div class='my-3'>
+      <button
+        class={`text-lg text-white my-2 py-1 px-3 rounded-xl ${isLoading()
+          ? 'bg-gray-500'
+          : 'bg-green-500 hover:bg-green-400'
+          }`}
+        disabled={isLoading()}
+        onClick={async () => {
+          setIsLoaindg(true)
+          const data = await partiqlAPI(props.resource.url, props.resource.query)
+          setIsLoaindg(false)
+          setResult(JSON.stringify(data))
+        }}
+      >
+        <Show when={isLoading()}>
+          <VsLoading size={24} class='animate-spin' />
+        </Show>
+        <Show when={!isLoading()}>
+          Run
+        </Show>
+      </button>
+      <div class={`tex-gray-900 bg-sea-300 rounded-xl ${result() && 'p-2'
+        }`}>
+        {result}
+      </div>
     </div>
   )
 }
@@ -83,13 +121,9 @@ export const QueryCard: Component<{
       <div class='flex flex-col justify-center'>
         <CodeBlock text={text()} />
       </div>
-      {/* <Show when={props.lang == 'CLI'}>
-        <div>
-          <button class='text-lg text-white bg-green-500 hover:bg-green-400 py-1 px-3 rounded-xl'>
-            Run
-          </button>
-        </div>
-      </Show> */}
+      <Show when={props.lang == 'CLI'}>
+        <RunBlock resource={props.resource} />
+      </Show>
     </div >
   )
 }
