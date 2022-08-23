@@ -9,6 +9,7 @@ export const queryExamples: QueryResource[] = [
     query: `
 SELECT 
   commit.author.name AS author,
+  commit.author.date,
   parents.url,
 `,
   },
@@ -19,7 +20,8 @@ SELECT
 SELECT
   objects.package.name, 
   objects.searchScore AS score 
-ORDERED BY score
+ORDER BY score
+LIMIT 5
 `,
   },
   {

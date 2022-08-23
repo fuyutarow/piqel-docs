@@ -15,7 +15,7 @@ export const Template: Component<{ lang: Langs }> = (props) => {
 
   return (
     <section class="text-gray-700 p-8">
-      <div class='text-3xl text-gray-200 my-3'>
+      <div class='text-3xl text-gray-300 my-3'>
         {title}
       </div>
       <ul class='my-3'>
@@ -24,7 +24,7 @@ export const Template: Component<{ lang: Langs }> = (props) => {
             <li>
               <Link
                 href={link}
-                class='no-underline hover:underline text-gray-200'
+                class='no-underline hover:underline text-gray-300'
               >
                 {link}
               </Link>
@@ -35,7 +35,7 @@ export const Template: Component<{ lang: Langs }> = (props) => {
       <Link
         id='installation'
         href={`${location.pathname}#installation`}
-        class='no-underline hover:underline text-2xl text-gray-200'
+        class='no-underline hover:underline text-2xl text-gray-300'
       >
         Installation
       </Link>
@@ -43,7 +43,7 @@ export const Template: Component<{ lang: Langs }> = (props) => {
         <For each={installation[props.lang]}>
           {({ label, description, script }) => (
             <div>
-              <div class='text-xl text-gray-200 py-1'>
+              <div class='text-xl text-gray-300 py-1'>
                 {label}
               </div>
               <Show when={description}>
@@ -62,7 +62,7 @@ export const Template: Component<{ lang: Langs }> = (props) => {
       <Link
         id='examples'
         href={`${location.pathname}#examples`}
-        class='no-underline hover:underline text-2xl text-gray-200'
+        class='no-underline hover:underline text-2xl text-gray-300'
       >
         Examples
       </Link>
@@ -72,7 +72,7 @@ export const Template: Component<{ lang: Langs }> = (props) => {
             <li>
               <Link
                 href={link}
-                class='no-underline hover:underline text-gray-200'
+                class='no-underline hover:underline text-gray-300'
               >
                 {link}
               </Link>
