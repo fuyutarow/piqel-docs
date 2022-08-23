@@ -1,12 +1,12 @@
-# [piqel.page.dev](https://piqel.page.dev)
+# [piqel.pages.dev](https://piqel.pages.dev)
 
 <div align="center">
   <div>
-    <img src="https://user-images.githubusercontent.com/14998939/186228115-5cdbfd02-a75c-4f25-9876-771855a448d6.png"></img>
+    <img width="368" alt="image" src="https://user-images.githubusercontent.com/14998939/186230936-977af168-9879-4a44-ac29-5a0bbd4abd11.png">
   </div>
   <strong>An implementation of PartiQL written in Rust</strong>
   <h3>
-    <a href="https://piqel.page.app">Document(WIP)</a>
+    <a href="https://piqel.pages.app">Document(WIP)</a>
   </h3>
 </div>
 
