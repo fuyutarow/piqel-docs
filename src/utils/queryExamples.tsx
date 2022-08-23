@@ -1,15 +1,19 @@
 import { nanoid } from "nanoid"
-import { Langs } from "../types"
+import { Langs, QueryResource } from "../types"
 
-export interface QueryResource {
-  id: string
-  url: string
-  query: string
-}
 
 export const queryExamples: QueryResource[] = [
   {
     id: '1',
+    url: 'https://api.github.com/repos/fuyutarow/piqel/commits?per_page=5',
+    query: `
+SELECT 
+  commit.author.name AS author,
+  parents.url,
+`,
+  },
+  {
+    id: '2',
     url: "https://registry.npmjs.org/-/v1/search?text=query",
     query: `
 SELECT
@@ -18,6 +22,25 @@ SELECT
 ORDERED BY score
 `,
   },
+  {
+    id: '3',
+    url: 'https://raw.githubusercontent.com/fuyutarow/pokemon.json/master/en/pokemon.json',
+    query: `
+SELECT 
+  name,
+  weight/(height*height) AS bmi
+ORDER BY bmi DESC
+LIMIT 3
+`,
+    result: `
+[
+  {"name": "Cosmoem", "bmi": 99989.99999999999},
+  {"name": "Sableye-1", "bmi": 644},
+  {"name": "Minior", "bmi": 444.44444444444446}
+]
+`
+  },
+
 ]
 
 export const toSome = (resource: QueryResource, type: Langs) => {
@@ -36,7 +59,9 @@ export const toSome = (resource: QueryResource, type: Langs) => {
 const toCLI = (resource: QueryResource) => {
   const { url, query } = resource
   return `
-    curl "${url}" | pq -q "${query}"
+    curl "${url}" | pq -q "
+${query.trim()}
+"
   `
 }
 
@@ -94,15 +119,12 @@ import { Pool } from 'piqel'
 
 (async() => {
   const r = await fetch(
-    "https://registry.npmjs.org/-/v1/search?text=query"
+    "${url}"
   )
   const d = await r.json()
   const pool = Pool.new(JSON.stringify(d))
   const dataStr = pool.query(\`
-SELECT
-  objects.package.name,
-  objects.searchScore AS score 
-ORDERED BY score
+${query.trim()}
 \`)()
 `
 }
