@@ -20,7 +20,7 @@ export const CodeBlock: Component<{
   text: string,
 }> = (props) => {
   return (
-    <div class="sm:container sm:mx-auto relative text-white bg-sea-950 border-moon-500 border-1 rounded-2xl px-2 w-80">
+    <div class="sm:container sm:mx-auto relative text-white bg-sea-950 border-moon-500 border-1 rounded-2xl px-1 py-0 w-80">
       <div class='absolute top-0.3 left-2 p-0 text-sm text-gray-500'>
       </div>
       <div class='absolute -top-1 -right-1'>
