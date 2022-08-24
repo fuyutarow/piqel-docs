@@ -6,7 +6,7 @@
   </div>
   <strong>An implementation of PartiQL written in Rust</strong>
   <h3>
-    <a href="https://piqel.pages.app">Document(WIP)</a>
+    <a href="https://piqel.pages.dev">Document(WIP)</a>
   </h3>
 </div>
 
